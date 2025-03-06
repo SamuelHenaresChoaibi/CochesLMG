@@ -1,41 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 
 <head>
-    <meta charset="UTF-8"> <!-- Establece la codificación de caracteres a UTF-8 -->
-    <meta name="author" content="Samuel Henares Choaibi"><!-- Define el autor del documento -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Samuel Henares Choaibi">
     <meta name="description" content="COCHES LMG">
-    <!-- Proporciona una descripción del contenido del documento para SEO -->
-    <meta property="og:url" content="COCHES LMG">
-    <!-- Define la URL del documento para Open Graph (redes sociales) -->
-    <meta name="robots" content="index, follow">
-    <!-- Indica a los motores de búsqueda que indexen la página, debería ser 'index, follow' -->
-    <meta name="keywords" content="Buscador, Coches, LMG, JS, HTML 5, CSS"> <!-- Palabras clave para SEO -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Configura la ventana gráfica para un diseño responsive -->
 
-    <link rel="icon" href="Imágenes/logo.png"> <!-- Define el logo -->
+    <link rel="icon" href="Imágenes/logo.png">
     <title>COCHES LMG</title>
-    <!-- Define el título del documento que aparece en la pestaña del navegador -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js"></script>
+    <script defer src="basededades.js"></script>
+    <script defer src="script.js"></script>
+
     <style>
-        .flex-column{
+        .flex-column {
             display: flex;
             flex-direction: column;
         }
 
-        .margin-top-25px{
+        .margin-top-25px {
             margin-top: 25px;
         }
+
+        #lista-vehiculos {
+            display: flex;
+            flex-direction: column;
+            max-width: max-content;
+        }
+
+
     </style>
 </head>
 
 <body class="bg-gray-200 flex items-center justify-center min-h-screen">
     <div class="bg-white shadow-lg rounded-lg w-3/4 p-6">
         <div class="flex-column items-center justify-center">
-        <h1 class="text-3xl font-bold">Vehicles</h1>
-        <p class="text-gray-600">Gestor de Vehicles per una empresa de lloguer</p>
+            <h1 class="text-3xl font-bold">Vehicles</h1>
+            <p class="text-gray-600">Gestor de Vehicles per una empresa de lloguer</p>
         </div>
         <div class="mt-6 flex gap-4">
             <button class="bg-blue-500 text-white px-4 py-2 rounded" id="cargar">Carregar Vehicles</button>
@@ -45,28 +47,32 @@
             <div class="bg-gray-100 p-4 rounded-lg">
                 <h2 class="font-bold">AFEGIR UN VEHICLE</h2>
                 <label class="block mt-2">Tipus del vehicle</label>
-                <select class="w-full p-2 border rounded">
-                    <option value="cotxe">Cotxe</option>
-                    <option value="moto">Moto</option>
-                    <option value="camio">Camió</option>
+                <select id="type" class="w-full p-2 border rounded" onchange="cambiarTipo()">
+                    <option value="Cotxe">Cotxe</option>
+                    <option value="Moto">Moto</option>
+                    <option value="Camió">Camió</option>
                 </select>
 
                 <label class="block mt-2">Marca del vehicle</label>
-                <input type="text" class="w-full p-2 border rounded" placeholder="Marca">
-                
+                <input id="marca" type="text" class="w-full p-2 border rounded" placeholder="Marca">
+
                 <label class="block mt-2">Model del vehicle</label>
-                <input type="text" class="w-full p-2 border rounded" placeholder="Model">
-                
+                <input id="model" type="text" class="w-full p-2 border rounded" placeholder="Model">
+
                 <label class="block mt-2">Any del vehicle</label>
-                <input type="text" class="w-full p-2 border rounded" placeholder="Any">
+                <input id="any" type="number" class="w-full p-2 border rounded" placeholder="Any">
+
                 <label class="block mt-2" id="cuarto-label">Portes</label>
-                <input type="text" class="w-full p-2 border rounded" id="cuartoInput" placeholder="Portes">
-            
-                <button class="margin-top-25px bg-green-500 text-white px-4 py-2 rounded" id="add">Afegir vehicle</button>
+                <input id="cuartoInput" type="text" class="w-full p-2 border rounded" placeholder="Portes">
+
+                <button class="margin-top-25px bg-green-500 text-white px-4 py-2 rounded" id="add" onclick="addVehiculo()">Afegir
+                    vehicle</button>
             </div>
-            
-            <div class="bg-gray-100 p-4 rounded-lg flex items-center justify-center text-2xl font-bold" id="lista-vehiculos">
-                Carrega les dades
+
+            <div class="bg-gray-100 p-4 rounded-lg flex-column items-center justify-center" id="lista-vehiculos-div">
+                <p class="text-3xl font-bold" id="cargar-datos">Carrega les dades</p>
+                <ul id="lista-vehiculos">
+                </ul>
             </div>
         </div>
     </div>

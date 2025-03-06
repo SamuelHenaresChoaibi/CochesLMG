@@ -50,16 +50,17 @@ Camion.prototype.constructor = Camion;
 let vehiculos = [];
 
 //Funciones
-function addVehiculo(tipo, marca, modelo, year, puertas = null, tipoMoto = null, capacidad = null){
+function addVehiculo(tipo, marca, modelo, year, ultimoInput){
     let vehiculo;
     if(tipo === "Cotxe"){
-        vehiculo = new Coche(marca, modelo, year, puertas);
+        vehiculo = new Coche(marca, modelo, year, ultimoInput);
     }else if(tipo === "Moto"){
-        vehiculo = new Moto(marca, modelo, year, tipoMoto);
+        vehiculo = new Moto(marca, modelo, year, ultimoInput);
     }else if(tipo === "Camió"){
-        vehiculo = new Camion(marca, modelo, year, capacidad)
+        vehiculo = new Camion(marca, modelo, year, ultimoInput)
     }
-    vehiculos.push(vehiculo)
+    vehiculos.push(vehiculo);
+    console.log(vehiculo);
 }
 
 function eliminarVehiculo(indice){
@@ -71,3 +72,5 @@ function eliminarVehiculo(indice){
 function obtenerVehiculos(){
     return vehiculos;
 }
+
+
